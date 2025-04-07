@@ -1,10 +1,80 @@
-@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap");
+/* Paperlogy 폰트 정의 */
+@font-face {
+  font-family: "Paperlogy";
+  src: url("/fonts/Paperlogy-1Thin.ttf") format("truetype");
+  font-weight: 100;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Paperlogy";
+  src: url("/fonts/Paperlogy-2ExtraLight.ttf") format("truetype");
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Paperlogy";
+  src: url("/fonts/Paperlogy-3Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Paperlogy";
+  src: url("/fonts/Paperlogy-4Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Paperlogy";
+  src: url("/fonts/Paperlogy-5Medium.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Paperlogy";
+  src: url("/fonts/Paperlogy-6SemiBold.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Paperlogy";
+  src: url("/fonts/Paperlogy-7Bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Paperlogy";
+  src: url("/fonts/Paperlogy-8ExtraBold.ttf") format("truetype");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Paperlogy";
+  src: url("/fonts/Paperlogy-9Black.ttf") format("truetype");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 @import "tailwindcss";
 
 :root {
-  font-family: "Outfit", "Black Han Sans", sans-serif;
+  font-family: "Paperlogy", sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
@@ -13,39 +83,103 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  --background: 0 0% 100%;
-  --foreground: 222.2 84% 4.9%;
+  /* 다크 테마 색상 시스템 */
+  --background: 224 10% 10%;
+  --foreground: 210 40% 98%;
 
-  --muted: 210 40% 96.1%;
-  --muted-foreground: 215.4 16.3% 46.9%;
+  --muted: 225 9% 17%;
+  --muted-foreground: 217 10% 64%;
 
-  --popover: 0 0% 100%;
-  --popover-foreground: 222.2 84% 4.9%;
+  --primary-dark: 231 55% 52%; /* 파란색 계열 */
+  --primary-light: 267 70% 62%; /* 보라색 계열 */
+  --accent: 332 75% 65%; /* 분홍색 계열 */
 
-  --card: 0 0% 100%;
-  --card-foreground: 222.2 84% 4.9%;
+  --card: 224 12% 14%;
+  --card-border: 224 15% 20%;
+  --card-hover: 224 15% 16%;
 
-  --border: 214.3 31.8% 91.4%;
-  --input: 214.3 31.8% 91.4%;
-
-  --primary: 222.2 47.4% 11.2%;
-  --primary-foreground: 210 40% 98%;
-
-  --secondary: 210 40% 96.1%;
-  --secondary-foreground: 222.2 47.4% 11.2%;
-
-  --accent: 210 40% 96.1%;
-  --accent-foreground: 222.2 47.4% 11.2%;
-
-  --destructive: 0 84.2% 60.2%;
-  --destructive-foreground: 210 40% 98%;
-
-  --ring: 215 20.2% 65.1%;
+  --border: 224 15% 18%;
+  --input: 224 15% 18%;
 
   --radius: 0.5rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
 }
 
 body {
-  margin: 0;
-  min-height: 100vh;
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+}
+
+/* 애니메이션 */
+@keyframes gradient-x {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.animate-gradient-x {
+  animation: gradient-x 15s ease infinite;
+  background-size: 200% 200%;
+}
+
+/* 스크롤바 스타일링 */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--muted));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--primary-dark) / 0.5);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--primary-dark) / 0.7);
+}
+
+/* 텍스트 선택 스타일 */
+::selection {
+  background: hsl(var(--primary-dark) / 0.3);
+  color: hsl(var(--foreground));
+}
+
+/* 공통 컴포넌트 스타일 */
+.section-container {
+  @apply py-32 relative;
+}
+
+.section-gradient-1 {
+  @apply bg-gradient-to-br from-gray-900 to-gray-800;
+}
+
+.section-gradient-2 {
+  @apply bg-gradient-to-br from-gray-800 to-gray-900;
+}
+
+.card {
+  @apply bg-gray-800/70 backdrop-blur-sm rounded-xl border border-gray-700/50 shadow-lg hover:shadow-blue-900/20 hover:shadow-xl transition-all duration-300;
+}
+
+.glass {
+  @apply bg-gray-800/40 backdrop-blur-md border border-gray-700/30;
+}
+
+.text-gradient {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400;
+}
+
+.button-gradient {
+  @apply bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white;
+}
+
+.icon-box {
+  @apply p-3 rounded-lg bg-gray-700/50 flex items-center justify-center;
 }
